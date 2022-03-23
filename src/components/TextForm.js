@@ -71,18 +71,18 @@ export default function TextForm(props) {
           <div className="mb-3">
           <textarea className={`form-control text-${props.mode === 'light' ? 'dark':'light'}`} value={Text} onChange = {handleChange} id="myBox" rows="6" style = {{backgroundColor : props.mode === 'dark' ? 'grey':'white'}} placeholder = "Enter text Here !"></textarea>
           </div>
-          <button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert to UpperCase</button>
-          <button className="btn btn-primary mx-2" onClick = {handleLoClick}>Convert to LowerCase</button>
-          <button className="btn btn-primary mx-2" onClick = {handleClear}>Clear Text</button>
-          <button className="btn btn-primary mx-2" onClick = {handleCopyClick}><span>{isCopied ? 'Copied!' : 'Copy Text'}</span></button>
-          <button className="btn btn-primary mx-2" onClick = {handleExtraSpaces}><span>{isRemoved ? 'Removed!' : 'Remove Extra Spaces'}</span></button>
+          <button disabled = {Text.length === 0} className="btn btn-primary mx-2 my-2" onClick={handleUpClick}>Convert to UpperCase</button>
+          <button disabled = {Text.length === 0} className="btn btn-primary mx-2 my-2" onClick = {handleLoClick}>Convert to LowerCase</button>
+          <button disabled = {Text.length === 0} className="btn btn-primary mx-2 my-2" onClick = {handleClear}>Clear Text</button>
+          <button disabled = {Text.length === 0} className="btn btn-primary mx-2 my-2" onClick = {handleCopyClick}><span>{isCopied ? 'Copied!' : 'Copy Text'}</span></button>
+          <button disabled = {Text.length === 0} className="btn btn-primary mx-2 my-2" onClick = {handleExtraSpaces}><span>{isRemoved ? 'Removed!' : 'Remove Extra Spaces'}</span></button>
         </div>
         <div className="container my-3">
           <h2 className={`my-3 text-${props.mode === 'light' ? 'dark':'light'}`}>Your Text Summary !</h2>
-          <p className={`my-3 text-${props.mode === 'light' ? 'dark':'light'}`}>{Text.split(" ").length} words and {Text.length} characters !</p>
-          <p className={`my-3 text-${props.mode === 'light' ? 'dark':'light'}`}>{0.008 * Text.split(" ").length} Minutes Read !</p>
+          <p className={`my-3 text-${props.mode === 'light' ? 'dark':'light'}`}>{Text.split(" ").filter((element)=>{return element.length !== 0}).length} words and {Text.length} characters !</p>
+          <p className={`my-3 text-${props.mode === 'light' ? 'dark':'light'}`}>{Text.length > 0 ? 0.008 * Text.split(" ").filter((element)=>{return element.length !== 0}).length : 0} Minutes Read !</p>
           <h2 className={`my-3 text-${props.mode === 'light' ? 'dark':'light'}`}>Preview</h2>
-          <p className={`my-3 text-${props.mode === 'light' ? 'dark':'light'}`}>{Text.length > 0 ? Text : 'Enter the Text in above Textbox To Preview Here !'}</p>
+          <p className={`my-3 text-${props.mode === 'light' ? 'dark':'light'}`}>{Text.length > 0 ? Text : 'Nothing To Preview !'}</p>
           <h2 className={`my-3 text-${props.mode === 'light' ? 'dark':'light'}`}>Find and Replace</h2>
           <form className="row g-3">
             <div className="col-auto">
